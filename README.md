@@ -1,0 +1,1 @@
+# spring-contracttest-componentA
