@@ -1,0 +1,56 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.1'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+    id "au.com.dius.pact" version "4.1.0"
+}
+
+group = 'com.example'
+version = '0.0.1'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'junit:junit:4.13'
+    testImplementation 'au.com.dius.pact:consumer:4.1.12'
+    testImplementation 'au.com.dius.pact.consumer:junit:4.1.12'
+}
+
+pact {
+    publish {
+        pactBrokerUrl = 'http://localhost:9292/'
+        pactBrokerUsername = 'pact'
+        pactBrokerPassword = 'password'
+
+        // default values
+        // providerVersion = version + '.' + gitCommitHash()
+        // tags = [gitBranch()]
+
+        providerVersion = System.getProperty("consumerVersion")
+        tags = System.getProperty("tags") ? System.getProperty("tags").split(",") : null
+    }
+}
+
+def gitCommitHash() {
+    def commitHash = ""
+    def proc = "git rev-parse HEAD".execute()
+    proc.in.eachLine { line -> commitHash = line }
+    proc.err.eachLine { line -> println line }
+    proc.waitFor()
+    commitHash
+}
+
+def gitBranch() {
+    def branch = ""
+    def proc = "git rev-parse --abbrev-ref HEAD".execute()
+    proc.in.eachLine { line -> branch = line }
+    proc.err.eachLine { line -> println line }
+    proc.waitFor()
+    branch
+}
