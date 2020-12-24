@@ -32,7 +32,7 @@ pact {
         // providerVersion = version + '.' + gitCommitHash()
         // tags = [gitBranch()]
 
-        consumerVersion = System.getProperty("consumerVersion")
+        providerVersion = System.getProperty("consumerVersion")
         tags = System.getProperty("tags") ? System.getProperty("tags").split(",") : null
     }
 }
