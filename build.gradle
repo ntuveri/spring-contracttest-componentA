@@ -24,7 +24,7 @@ dependencies {
 
 pact {
     publish {
-        pactBrokerUrl = 'http://localhost:9292/'
+        pactBrokerUrl = System.getProperty("pactBrokerUrl") ?: 'http://localhost:9292/'
         pactBrokerUsername = 'pact'
         pactBrokerPassword = 'password'
 
@@ -32,7 +32,7 @@ pact {
         // providerVersion = version + '.' + gitCommitHash()
         // tags = [gitBranch()]
 
-        providerVersion = System.getProperty("consumerVersion")
+        consumerVersion = System.getProperty("consumerVersion")
         tags = System.getProperty("tags") ? System.getProperty("tags").split(",") : null
     }
 }
