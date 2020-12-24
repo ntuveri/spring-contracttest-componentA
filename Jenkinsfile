@@ -31,7 +31,7 @@ pipeline {
 
         stage('Publish contracts') {
             steps {
-                sh "./gradlew pactPublish -Dtags=${env.BRANCH_NAME} -DconsumerVersion=${pacticipantVersion}"
+                sh "./gradlew pactPublish -Dtags=${env.BRANCH_NAME} -DconsumerVersion=${pacticipantVersion} -Dpactbroker.host=pact-broker"
             }
         }
 
