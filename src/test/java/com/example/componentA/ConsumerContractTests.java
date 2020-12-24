@@ -25,8 +25,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.SocketUtils;
 
-@SpringBootTest
-@RunWith(SpringRunner.class)
+// @SpringBootTest
+// @RunWith(SpringRunner.class)
 public class ConsumerContractTests {
 
 	private static final String PROVIDER_NAME = "componentB";
