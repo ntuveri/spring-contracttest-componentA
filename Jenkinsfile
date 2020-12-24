@@ -3,7 +3,7 @@ def pacticipantVersion
 def integrationEnvTag = 'develop'
 
 pipeline {
-    agent { any }
+    agent any
 
     stages {
         stage('Setup') {
@@ -24,15 +24,21 @@ pipeline {
         }
 
         stage('Run tests. Generate contracts') {
-            sh "./gradlew clean test"
+            steps {
+                sh "./gradlew clean test"
+            }
         }
 
         stage('Publish contracts') {
-            sh "./gradlew pactPublish -Dtags=${env.BRANCH_NAME} -DconsumerVersion=${pacticipantVersion}"
+            steps {
+                sh "./gradlew pactPublish -Dtags=${env.BRANCH_NAME} -DconsumerVersion=${pacticipantVersion}"
+            }
         }
 
         stage('Can I deploy?') {
-            sh "./pact/bin/pact-broker can-i-deploy --broker-base-url http://pact-broker:9292 --broker-username pact --broker-password password --pacticipant ${pacticipant} --version ${pacticipantVersion} --to ${integrationEnvTag} --retry-interval 30 --retry-while-unknown 10"
+            steps {
+                sh "./pact/bin/pact-broker can-i-deploy --broker-base-url http://pact-broker:9292 --broker-username pact --broker-password password --pacticipant ${pacticipant} --version ${pacticipantVersion} --to ${integrationEnvTag} --retry-interval 30 --retry-while-unknown 10"
+            }
         }
     }
 }
