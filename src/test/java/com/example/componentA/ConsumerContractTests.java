@@ -25,8 +25,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.SocketUtils;
 
-// @SpringBootTest
-// @RunWith(SpringRunner.class)
+@SpringBootTest
+@RunWith(SpringRunner.class)
 public class ConsumerContractTests {
 
 	private static final String PROVIDER_NAME = "componentB";
@@ -34,7 +34,6 @@ public class ConsumerContractTests {
 
 	private TestRestTemplate consumer = new TestRestTemplate();
 
-	/*
 	@Rule
 	public PactProviderRule provider = new PactProviderRule
 		(PROVIDER_NAME, MockProviderConfig.LOCALHOST, SocketUtils.findAvailableTcpPort(), this);
@@ -71,6 +70,7 @@ public class ConsumerContractTests {
 		Assert.assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
 	}
 
+	/*
 	@Pact(provider = PROVIDER_NAME, consumer = CONSUMER_NAME)
 	public RequestResponsePact getAlligatorMaryNotFound(PactDslWithProvider builder) {
 
