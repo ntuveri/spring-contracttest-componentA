@@ -81,7 +81,6 @@ public class ConsumerContractTests {
 			.method(HttpMethod.GET.name())
 			.headers(Collections.singletonMap(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON.toString()))
 			.willRespondWith()
-			.headers(Collections.singletonMap(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON.toString()))
 			.status(HttpStatus.NOT_FOUND.value())
 			.toPact();
 
