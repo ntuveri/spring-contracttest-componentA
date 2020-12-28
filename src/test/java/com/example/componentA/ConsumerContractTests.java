@@ -70,7 +70,6 @@ public class ConsumerContractTests {
 		Assert.assertEquals(HttpStatus.OK.value(), response.getStatusCodeValue());
 	}
 
-	/*
 	@Pact(provider = PROVIDER_NAME, consumer = CONSUMER_NAME)
 	public RequestResponsePact getAlligatorMaryNotFound(PactDslWithProvider builder) {
 
@@ -102,5 +101,4 @@ public class ConsumerContractTests {
 
 		Assert.assertEquals(HttpStatus.NOT_FOUND.value(), response.getStatusCodeValue());
 	}
-	*/
 }
