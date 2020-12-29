@@ -35,7 +35,7 @@ pipeline {
             }
         }
 
-        stage('Can I deploy?') {
+        stage('Can I deploy to develop?') {
             steps {
                 sh "./pact/bin/pact-broker can-i-deploy --broker-base-url http://pact-broker:9292 --broker-username pact --broker-password password --pacticipant ${pacticipant} --version ${pacticipantVersion} --to ${integrationEnvTag} --retry-interval 30 --retry-while-unknown 10"
             }

@@ -89,7 +89,7 @@ public class ConsumerContractTests {
 
 	@Test
 	@PactVerification(value = PROVIDER_NAME, fragment = "getAlligatorMaryNotFound")
-	public void givenAlligatorMaryExists_WhenAlligatorMaryIsRequested_ThenResponseIsNotFound() {
+	public void givenAlligatorMaryDoesNotExist_WhenAlligatorMaryIsRequested_ThenResponseIsNotFound() {
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
